@@ -1,9 +1,15 @@
 describe("webdriverunvivesity - contact us page", () => {
+  // Avoid duplicating before use a hook
   beforeEach(async () => {
     await browser.maximizeWindow();
+    await browser.url("/Contact-Us/contactus.html");
+    console.log(`>>Browser Object: ${JSON.stringify(browser)}`);
+  });
+  // Avoid duplicating after use a hook
+  afterEach(async () => {
+    await browser.pause(5000);
   });
   it("valid submission - submit all information", async () => {
-    await browser.url("/Contact-Us/contactus.html");
     const firstName = await $('//*[@name="first_name"]');
     const lastName = await $('//*[@name="last_name"]');
     const email = await $('//*[@name="email"]');
@@ -16,26 +22,23 @@ describe("webdriverunvivesity - contact us page", () => {
     await message.setValue("Hey, could you tell me what is life about?");
     await submitButton.click();
 
-    const succesfulSubmission = $("#contact_reply > h1");
+    const succesfulSubmission = $('#contact_reply > h1');
     await expect(succesfulSubmission).toHaveText("Thank You for your Message!");
-    //await browser.pause(5000);
+    
   });
 
-  it.only("invalid submission - dont submit all information", async () => {
-    await browser.url("/Contact-Us/contactus.html");
-    //name
+  it("invalid submission - dont submit all information", async () => {
     const firstName = await $('//*[@name="first_name"]');
-    //lastname
     const lastName = await $('//*[@name="last_name"]');
-    //comments/message
     const message = await $('//*[@name="message"]');
-    //submit button
     const submitButton = await $('//input[@value="SUBMIT"]');
 
     await firstName.setValue("Alex");
     await lastName.setValue("Timo");
     await message.setValue("Hello! Welcome to WebDriver IO!");
     await submitButton.click();
-    await browser.pause(5000);
+
+    const successfulSubmission = $('body');
+    await expect(successfulSubmission).toHaveTextContaining(['Error: all fields are required', 'Error: Invalid email address']);
   });
 });
