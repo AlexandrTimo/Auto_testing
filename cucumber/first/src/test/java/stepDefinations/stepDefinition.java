@@ -1,5 +1,6 @@
 package stepDefinations;
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,13 +12,20 @@ public class stepDefinition {
 	 	@Given("^User is on NetBanking landing page$")
 	    public void user_is_on_nebanking_landing_page() throws Throwable {
 		 	//Main page landing
-	 		System.out.println("Navigate to URL");
+	 		System.out.println("Navigate to NetBanking URL");
 	    }
 
 	    @When("^User login into application with username and password$")
 	    public void user_login_into_application_with_username_and_password() throws Throwable {
 	    	//Input login
 	    	System.out.println("Accept Login and Password");
+	    }
+	    
+	    // Username and password -> value
+	    @When("^User login into application with username \"([^\"]*)\" and password \"([^\"]*)\"$")
+	    public void user_login_into_application_with_username_something_and_password_something(String strArg1, String strArg2) throws Throwable {
+	        System.out.println(strArg1);
+	        System.out.println(strArg2);
 	    }
 
 	    @Then("^Home page is populated$")
@@ -26,9 +34,12 @@ public class stepDefinition {
 	    	System.out.println("Navigate Account URL");
 	    }
 
-	    @And("^Cards are dispalyed$")
-	    public void cards_are_dispalyed() throws Throwable {
-	    	//Validating and display cards
-	    	System.out.println("Displayed card information");
-	    }
+	    @And("Cards dispalyed are {string}")
+	    public void cards_not_dispalyed_are(String arg) {
+	   	    // Write code here that turns the phrase above into concrete actions
+	   	    System.out.println(arg);
+	   	}
+
+
+
 }

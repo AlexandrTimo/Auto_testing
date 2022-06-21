@@ -23,7 +23,14 @@ Feature: Application login
 
   Scenario: Home page default login
     Given User is on NetBanking landing page
-    When User login into application with username and password
+    When User login into application with username "Alex" and password "97189"
     Then Home page is populated
-    And Cards are dispalyed
+    And Cards dispalyed are "true"
 
+  Scenario: Home page default login
+    Given User is on NetBanking landing page
+    When User login into application with username "John" and password "1546"
+    Then Home page is populated
+    And Cards dispalyed are "false"
+    
+    
