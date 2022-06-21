@@ -1,1 +1,7 @@
 /temp
+/first/target
+/frst/main
+*.classpath
+*.project
+first/.settings
+/first/test-output
