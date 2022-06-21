@@ -1,7 +1,7 @@
 /temp
-/first/target
-/frst/main
-*.classpath
-*.project
-first/.settings
-/first/test-output
+/cucumber/first/target
+/cucumber/frst/main
+/cucumber/*.classpath
+/cucumber/*.project
+/cucumber/first/.settings
+/cucumber/first/test-output
