@@ -23,14 +23,37 @@ Feature: Application login
 
   Scenario: Home page default login
     Given User is on NetBanking landing page
-    When User login into application with username "Alex" and password "97189"
+    When User login in to application with username "Alex" and password "97189"
     Then Home page is populated
     And Cards dispalyed are "true"
 
   Scenario: Home page default login
     Given User is on NetBanking landing page
-    When User login into application with username "John" and password "1546"
+    When User login in to application with username "John" and password "1546"
     Then Home page is populated
     And Cards dispalyed are "false"
+    
+  Scenario: Home page default login
+    Given User is on NetBanking landing page
+    When User sign up with following details
+    | atimo | 1414 | atimo@gmail.com | San Jose, CA | +1 (408)234-4887 |
+    Then Home page is populated
+    And Cards dispalyed are "false"
+    
+  Scenario Outline: Home page default login
+    Given User is on NetBanking landing page
+    When User login into application with username <username> and password <password>
+    Then Home page is populated
+    And Cards dispalyed are "true"
+    
+    Examples:
+    | username | password |
+    | user1     | pass1    |
+    | user2     | pass2    |
+    | user3     | pass3    |
+    | user4     | pass4    | 
+    
+    
+    
     
     

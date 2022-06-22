@@ -28,5 +28,9 @@ stepDefinition.exports = function () {
 	this.And(/^Cards dispalyed are \"([^\"]*)\"$/, function (arg, callback) {
     console.log(arg);
   });
+  
+  this.When(/^User login into application with username (.+) and password (.+)$/, function (username, password, callback) {
+    console.log(`${username} and ${password}`);
+  });
 
 };
