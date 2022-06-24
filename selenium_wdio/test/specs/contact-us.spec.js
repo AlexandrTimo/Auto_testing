@@ -1,8 +1,9 @@
 describe("webdriverunvivesity - contact us page", () => {
   // Avoid duplicating before use a hook
   beforeEach(async () => {
-    await browser.maximizeWindow();
-    await browser.url("/Contact-Us/contactus.html");
+    // set via function wdio config file ->
+    //await browser.maximizeWindow();
+    //await browser.url("/Contact-Us/contactus.html");
     console.log(`>>Browser Object: ${JSON.stringify(browser)}`);
   });
   // Avoid duplicating after use a hook
@@ -23,7 +24,11 @@ describe("webdriverunvivesity - contact us page", () => {
     await submitButton.click();
 
     const succesfulSubmission = $('#contact_reply > h1');
-    await expect(succesfulSubmission).toHaveText("Thank You for your Message!");
+    await expect(succesfulSubmission).toHaveText('Thank You for your Message!');
+
+    // expect -> as jest assertions 
+    const succesfulSubmission2 = await $('#contact_reply > h1').getText();
+    expect(succesfulSubmission2).toEqual('Thank You for your Message!');
     
   });
 
@@ -38,6 +43,7 @@ describe("webdriverunvivesity - contact us page", () => {
     await message.setValue("Hello! Welcome to WebDriver IO!");
     await submitButton.click();
 
+    
     const successfulSubmission = $('body');
     await expect(successfulSubmission).toHaveTextContaining(['Error: all fields are required', 'Error: Invalid email address']);
   });
