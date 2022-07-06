@@ -10,7 +10,7 @@ describe("webdriverunvivesity - contact us page", () => {
   afterEach(async () => {
     await browser.pause(5000);
   });
-  it("valid submission - submit all information", async () => {
+  it.only("valid submission - submit all information", async () => {
     const firstName = await $('//*[@name="first_name"]');
     const lastName = await $('//*[@name="last_name"]');
     const email = await $('//*[@name="email"]');
@@ -24,6 +24,8 @@ describe("webdriverunvivesity - contact us page", () => {
     await submitButton.click();
 
     const succesfulSubmission = $('#contact_reply > h1');
+    // Debuggin via console.log and element
+    console.log(`succesfulSubmission Element: ${JSON.stringify(await succesfulSubmission)}`);
     await expect(succesfulSubmission).toHaveText('Thank You for your Message!');
 
     // expect -> as jest assertions 
